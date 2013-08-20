@@ -7,10 +7,11 @@ from NotificationCenter import NotificationCenter
 
 NC_METHODS = [
     'startup',
-    'fun1',
     'status_date',
     'status_weather',
-    'status_torrents'
+    'fun1',
+    'status_torrents',
+    'random_quotes'
     ]
 
 nc = NotificationCenter()

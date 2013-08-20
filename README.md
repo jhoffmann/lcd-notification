@@ -14,7 +14,7 @@ Simple rotating status displays for the Adafruit 16x2 LCD on the Raspberry Pi
 #### Installing the RC script
 
     sudo cp lcd-notification.rc /etc/init.d/lcd-notification
-    sudo cp lcd-notification.default /etc/default/lcd-notification.sh
+    sudo cp lcd-notification.default /etc/default/lcd-notification
 
     sudo chmod 755 /etc/init.d/lcd-notification
     sudo update-rc.d lcd-notification defaults

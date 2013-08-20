@@ -11,7 +11,7 @@ class NotificationCenter:
     TORRENT_PORT = 9091
     TORRENT_USER = 'pi'
     TORRENT_PASS = 'pi'
-    WEATHER_CITY = 'Ottawa'
+    WEATHER_CITY = 'Kanata'
     DISK_FS      = ['/', '/media']
 
     def _splitCount(self, s, count):
@@ -64,12 +64,12 @@ class NotificationCenter:
             data = json.loads(self._fetchJson(url))
 
             status    = data['weather'][0]['main'].encode('utf-8')
+            desc      = data['weather'][0]['description'].encode('utf-8')
             """ Convert the temperatures from Kelvin to Celcius """
             tmp_curr  = data['main']['temp'] - 273.15
-            tmp_high  = data['main']['temp_max'] - 273.15
-            tmp_low   = data['main']['temp_min'] - 273.15
+
             return ['%-11s %3d%c' % (status[:11], tmp_curr, 223),
-                'H: %3d%c  L: %3d%c' % (tmp_high, 223, tmp_low, 223)]
+                '%-16s' % (desc[:16])]
         except Exception:
             return ['{:^16}'.format('UNABLE TO LOAD'),
                 '{:^16}'.format('WEATHER')]
