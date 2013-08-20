@@ -1,0 +1,29 @@
+Displays:
+
+Date/Temp:
+Mon Aug 19 12:30
+Mem: 75%   49.2C
+
+Torrents:
+Active 02 of 002
+X 30000KB 3000KB
+
+Weather (Current, High, Low):
+  Mostly Cloudy
+-23C  +27C  +19C
+
+-18C Thunderstor
+H: -12C  L: -12C
+
+Disk:
+/dev/root    27%
+/dev/sda1     6%
+
+Keep Calm  #YOLO
+ Carry On  #SWAG
+
+  MAIN SYSTEM
+    TURN ON
+
+ THE SYSTEM IS
+   NOW ARMED
