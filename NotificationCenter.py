@@ -50,7 +50,7 @@ class NotificationCenter:
             """ Show an infinity, or a turtle if alt speed enabled """
             turtle = 244 if stats.alt_speed_enabled else 243
 
-            return ['Active: %2d (%3d)' % (stats.activeTorrentCount, stats.torrentCount),
+            return ['Status: %2d (%3d)' % (stats.activeTorrentCount, stats.torrentCount),
                 '%c %5dKB %4dKB' % (turtle, down, up)]
         except:
             return ['{:^16}'.format("UNABLE TO LOAD"),
