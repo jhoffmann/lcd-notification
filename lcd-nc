@@ -8,12 +8,10 @@ from NotificationCenter import NotificationCenter
 lcd = Adafruit_CharLCDPlate(1)
 
 NC_METHODS = {
-    'status_date':     [lcd.WHITE,  10],
-    'status_weather':  [lcd.WHITE,  10],
+    'status_date':     [lcd.WHITE,  30],
+    'status_weather':  [lcd.WHITE,  30],
     'status_torrents': [lcd.YELLOW, 10],
-    'status_disk':     [lcd.YELLOW,  5],
-    'fun1':            [lcd.RED,     3],
-    'random_quotes':   [lcd.RED,     3],
+    'status_disk':     [lcd.YELLOW, 10],
     }
 
 lcd.clear()
@@ -21,16 +19,19 @@ lcd.backlight(lcd.RED)
 
 nc = NotificationCenter()
 lcd.message("\n".join(nc.startup()))
-sleep(15)
+sleep(5)
 
 """ Try to keep the weather request from tying things up """
 socket.setdefaulttimeout(2)
 
 while True:
     for NC_METHOD, (LCD_BK, NC_SLEEP) in NC_METHODS.iteritems():
-        res = getattr(nc, NC_METHOD)()
+        res = getattr(nc, nc.STATIC_MODE or NC_METHOD)()
         if len(res):
             lcd.clear()
             lcd.message("\n".join(res))
-            lcd.backlight(LCD_BK)
-            sleep(NC_SLEEP)
+            if not nc.STATIC_MODE:
+                lcd.backlight(LCD_BK)
+                sleep(NC_SLEEP)
+            else:
+                sleep(3)

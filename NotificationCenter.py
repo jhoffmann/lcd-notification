@@ -13,6 +13,7 @@ class NotificationCenter:
     TORRENT_PASS = 'pi'
     WEATHER_CITY = 'Kanata'
     DISK_FS      = ['/', '/media']
+    STATIC_MODE  = False
 
     def _splitCount(self, s, count):
          return [''.join(x) for x in zip(*[list(s[z::count]) for z in range(count)])]
@@ -35,6 +36,11 @@ class NotificationCenter:
         except Exception:
             cpu_temp = 0.0
 
+        if cpu_temp > 60 or mem.percent > 50:
+            self.STATIC_MODE = "status_date"
+        else:
+            self.STATIC_MODE = False
+
         return [datetime.now().strftime(self.DATE_FMT),
             'Mem: %4.1f%% %4.1f%c' % (mem.percent, cpu_temp, 223)]
 
@@ -50,8 +56,16 @@ class NotificationCenter:
             """ Show an infinity, or a turtle if alt speed enabled """
             turtle = 244 if stats.alt_speed_enabled else 243
 
-            return ['Status: %2d (%3d)' % (stats.activeTorrentCount, stats.torrentCount),
-                '%c %5dKB %4dKB' % (turtle, down, up)]
+            if down > 0:
+                self.STATIC_MODE = "status_torrents"
+            else:
+                self.STATIC_MODE = False
+
+            if stats.activeTorrentCount > 0:
+                return ['Status: %2d (%3d)' % (stats.activeTorrentCount, stats.torrentCount),
+                    '%c %5dKB %4dKB' % (turtle, down, up)]
+            else:
+                return {};
         except:
             return ['{:^16}'.format("UNABLE TO LOAD"),
                 '{:^16}'.format("TORRENT DATA")]
