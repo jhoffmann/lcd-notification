@@ -105,7 +105,7 @@ class NotificationCenter:
                 '{:^16}'.format('DISK USAGE')]
 
     def startup(self):
-        return ['{:^16}'.format('MAIN SYSTEM'),
+        return ['{:^16}'.format('MAIN SCREEN'),
             '{:^16}'.format('TURN ON')]
 
     def fun1(self):
