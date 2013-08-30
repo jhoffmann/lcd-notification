@@ -2,6 +2,7 @@
 
 from time import sleep
 import signal, sys, os
+from random import shuffle
 
 GPIO = [5, 6, 2]
 STEP = 5
@@ -22,9 +23,12 @@ if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
 
     while True:
+        shuffle(GPIO)
         for i in GPIO:
             for j in range(1, 249, STEP):
                 pwm(i, j, SYS_DELAY)
+
+        shuffle(GPIO)
         for i in GPIO:
             for j in range(249, 1, (STEP*-1)):
                 pwm(i, j, SYS_DELAY)
